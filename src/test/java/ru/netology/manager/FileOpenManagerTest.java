@@ -17,7 +17,7 @@ class FileOpenManagerTest {
     @BeforeEach
     void setUp() {
         manager.catalogue(".mp3", "Player");
-        manager.catalogue(".mp4", null);
+        manager.catalogue(".mp4", null); // "NotePad(default)" instead of the null
         manager.catalogue(".html", "Browser");
         manager.catalogue(".JpEg", "Foto");
         manager.catalogue(".Doc", "wordApp");
@@ -39,7 +39,7 @@ class FileOpenManagerTest {
 
     @Test
     void shouldGetSetExtensions() {
-        Set<String> expected = new HashSet<>(Set.of(".Doc", ".html", ".JpEg", ".mp4", ".txt(default)"));
+        Set<String> expected = new HashSet<>(Set.of(".doc", ".html", ".jpeg", ".mp4", ".txt(default)"));
         manager.delete(".MP3");
         manager.delete(".Xls");
         manager.delete(".pdf");
@@ -50,11 +50,11 @@ class FileOpenManagerTest {
     void getSetNames() {
         Set<String> expected = new HashSet<>();
         expected.add("redactor");
-        expected.add(null);
-        expected.add("Player");
-        expected.add("wordApp");
-        expected.add("Foto");
-        expected.add("Browser");
+        expected.add("notepad(default)");
+        expected.add("player");
+        expected.add("wordapp");
+        expected.add("foto");
+        expected.add("browser");
         assertThat(manager.getSetNames(), equalTo(expected));
     }
 }

@@ -2,31 +2,35 @@ package ru.netology.manager;
 
 import lombok.Data;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
-import java.util.TreeMap;
+import java.util.*;
 
 @Data
 public class FileOpenManager {
     Map<String, String> map;
 
     public FileOpenManager() {
-        this.map = new TreeMap<>(String.CASE_INSENSITIVE_ORDER);
+        this.map = new HashMap<>();
     }
 
     public void catalogue(String extension, String name) {
         if (extension == null) {
             extension = ".txt(default)";
         }
+        if (name == null) {
+            name = "NotePad(default)";
+        }
+        extension = extension.toLowerCase();
+        name = name.toLowerCase();
         map.put(extension, name);
     }
 
     public String getNameByExtension(String extension) {
+        extension = extension.toLowerCase();
         return map.get(extension);
     }
 
     public void delete(String extension) {
+        extension = extension.toLowerCase();
         map.remove(extension);
     }
 
